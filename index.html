@@ -1,429 +1,745 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Little Chef Maryam – Home Cooking & Catering</title>
 
-        <title>Little Chef Maryam</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-        <!-- Color overrides for Little Chef Maryam -->
-        <style>
-            :root{
-                --primary: #C77D5E; /* Terracotta */
-                --accent: #D4AF37;  /* Gold */
-                --bg: #FDF8F4;      /* Cream */
-                --text: #3D2B1F;    /* Dark Brown */
+    <style>
+        /* ====== BRAND COLORS ====== */
+        :root {
+            --primary: #C77D5E;
+            --primary-dark: #A8654A;
+            --accent: #D4AF37;
+            --light-bg: #FDF8F4;
+            --dark: #3D2B1F;
+            --white: #FFFFFF;
+            --gray: #6B7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ====== NAVIGATION ====== */
+        .navbar-custom {
+            background: var(--white);
+            padding: 0.8rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+        .navbar-custom .navbar-brand {
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .navbar-custom .navbar-brand span {
+            color: var(--accent);
+        }
+        .navbar-custom .nav-link {
+            color: var(--dark) !important;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            padding: 0.5rem 1.2rem !important;
+            transition: color 0.3s;
+        }
+        .navbar-custom .nav-link:hover {
+            color: var(--primary) !important;
+        }
+
+        /* ====== HERO ====== */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 8rem 0 5rem 0;
+            margin-top: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: var(--light-bg);
+            clip-path: ellipse(60% 100% at 50% 100%);
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .hero h1 span {
+            color: var(--accent);
+        }
+        .hero .age-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 0.3rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+        .hero .btn-hero {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+        }
+        .hero .btn-hero:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+            color: var(--primary);
+        }
+        .hero-phone {
+            margin-top: 1.5rem;
+            font-size: 1.4rem;
+        }
+        .hero-phone i {
+            color: var(--accent);
+            margin-right: 0.5rem;
+        }
+
+        /* ====== SECTION TITLES ====== */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .section-title span {
+            color: var(--accent);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+        }
+
+        /* ====== ABOUT ====== */
+        .about-section {
+            padding: 4rem 0;
+        }
+        .about-section .about-img {
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+        }
+        .about-section .age-highlight {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 0.2rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* ====== SERVICES ====== */
+        .service-card {
+            background: var(--white);
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-bottom: 4px solid var(--accent);
+            height: 100%;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+        }
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .service-card h4 {
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .service-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* ====== MENU ====== */
+        .menu-item {
+            background: var(--white);
+            padding: 1.2rem 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-left: 4px solid var(--accent);
+        }
+        .menu-item .item-name {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1.05rem;
+        }
+        .menu-item .item-price {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: var(--light-bg);
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+        }
+
+        /* ====== GALLERY ====== */
+        .gallery-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        .gallery-img:hover {
+            transform: scale(1.03);
+        }
+        .gallery-caption {
+            text-align: center;
+            margin-top: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* ====== WHATSAPP FLOATING BUTTON ====== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #25D366;
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            z-index: 1000;
+            transition: transform 0.3s;
+            font-size: 0.95rem;
+            border: none;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+            background: #20B85A;
+            color: white;
+        }
+        .whatsapp-float i {
+            font-size: 1.5rem;
+        }
+
+        /* ====== RESERVATION ====== */
+        .reservation-section {
+            padding: 4rem 0;
+            background: var(--white);
+        }
+        .reservation-section .form-control {
+            border-radius: 10px;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid #E5E7EB;
+            background: var(--light-bg);
+        }
+        .reservation-section .form-control:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+        .reservation-section .btn-reserve {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            border: none;
+            transition: background 0.3s, transform 0.3s;
+            width: 100%;
+        }
+        .reservation-section .btn-reserve:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: scale(1.02);
+        }
+
+        /* ====== CONTACT ====== */
+        .contact-section {
+            padding: 4rem 0;
+            background: var(--light-bg);
+        }
+        .contact-info i {
+            color: var(--accent);
+            width: 2rem;
+            font-size: 1.2rem;
+        }
+        .contact-info .contact-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 0.8rem;
+            font-size: 1.8rem;
+            color: var(--primary);
+            transition: color 0.3s, transform 0.3s;
+        }
+        .social-icons a:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* ====== FOOTER ====== */
+        .footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 2.5rem 0;
+            text-align: center;
+            border-top: 4px solid var(--accent);
+        }
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .footer .social a {
+            color: var(--white);
+            margin: 0 0.8rem;
+            font-size: 1.4rem;
+            transition: color 0.3s;
+        }
+        .footer .social a:hover {
+            color: var(--accent);
+        }
+
+        /* ====== MOBILE RESPONSIVE ====== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
             }
-            body{ background:var(--bg); color:var(--text); }
-            .color-bg{ background:var(--primary) !important; }
-            .section-title, .header-title { color:var(--text) !important; }
-            .btn-reservation, .btn-send, .btn { background:var(--primary); border-color:var(--primary); color: white; }
-            footer{ background:transparent; color:var(--text); }
-            .age-badge{ background:var(--accent); color:var(--text); padding:6px 10px; border-radius:20px; font-weight:bold; display:inline-block; margin-left:10px; }
-            a{ color:var(--text); }
-        </style>
-
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/owl.carousel.css">
-        <link rel="stylesheet" href="css/owl.theme.css">
-        <link rel="stylesheet" href="css/animate.css">
-        <link rel="stylesheet" href="css/flexslider.css">
-        <link rel="stylesheet" href="css/pricing.css">
-        <link rel="stylesheet" href="css/main.css">
-
-        <script src="js/jquery-1.11.2.min.js"></script>
-        <script type="text/javascript" src="js/jquery.flexslider.min.js"></script>
-        <script type="text/javascript">
-            $(window).load(function() {
-                $('.flexslider').flexslider({
-                 animation: "slide",
-                 controlsContainer: ".flexslider-container"
-                });
-            });
-        </script>
-
-        <script src="https://maps.googleapis.com/maps/api/js"></script>
-        <script>
-            function initialize() {
-                var mapCanvas = document.getElementById('map-canvas');
-                var mapOptions = {
-                    center: new google.maps.LatLng(9.8965, 8.8583), // Jos, Plateau State approx
-                    zoom: 15,
-                    scrollwheel: false,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                }
-                var map = new google.maps.Map(mapCanvas, mapOptions)
-
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(9.8965, 8.8583),
-                    title:"Little Chef Maryam"
-                });
-                marker.setMap(map);
+            .section-title {
+                font-size: 2rem;
             }
-            google.maps.event.addDomListener(window, 'load', initialize);
-        </script>
-
-    </head>
-    <body data-spy="scroll" data-target="#template-navbar">
-
-        <!--== Navigation ==-->
-        <nav id="template-navbar" class="navbar navbar-default custom-navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#Food-fair-toggle">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">
-                        <img id="logo" src="images/Logo_main.png" class="logo img-responsive" alt="Little Chef Maryam Logo">
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="Food-fair-toggle">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#pricing">Menu</a></li>
-                        <li><a href="#have-a-look">Gallery</a></li>
-                        <li><a href="#reserve">Reserve</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.row -->
-        </nav>
-
-        <!--== Header / Hero ==-->
-        <section id="header-slider" class="owl-carousel">
-            <div class="item">
-                <div class="container">
-                    <div class="header-content">
-                        <h1 class="header-title">Little Chef Maryam <span class="age-badge">Age 10</span></h1>
-                        <p class="header-sub-title">Home cooking made with love</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!--== About us ==-->
-        <section id="about" class="about">
-            <img src="maryam-kitchen.jpg.jpg" class="img-responsive section-icon hidden-sm hidden-xs" alt="kitchen utensils">
-            <div class="wrapper">
-                <div class="container-fluid">
-                    <div class="row dis-table">
-                        <div class="hidden-xs col-sm-6 section-bg dis-table-cell" style="background-image:url('jollof-rice.jpg.jpg'); background-size:cover; background-position:center;">
-                        </div>
-                        <div class="col-xs-12 col-sm-6 dis-table-cell">
-                            <div class="section-content">
-                                <h2 class="section-content-title">About Maryam</h2>
-                                <p class="section-content-para">
-                                    Maryam is a 10-year-old home cook based in Jos, Plateau State, Nigeria. She loves creating delicious, comforting meals for family and friends and is passionate about sharing home cooking made with love.
-                                </p>
-                                <p class="section-content-para">
-                                    Services include home-cooked meals, small events catering, and meal prep. Little Chef Maryam brings authentic flavours and a warm, friendly touch to every order.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!--== Services ==-->
-        <section id="services" class="pricing">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center">
-                        <h2 class="pricing-title">Services</h2>
-                        <p class="section-content-para">Home Cooking • Small Events • Meal Prep</p>
-                        <div class="row" style="margin-top:30px;">
-                            <div class="col-sm-4"><h4>Home Cooking</h4><p>Comfort meals delivered with care.</p></div>
-                            <div class="col-sm-4"><h4>Small Events</h4><p>Catering for birthday parties and family events.</p></div>
-                            <div class="col-sm-4"><h4>Meal Prep</h4><p>Weekly meal plans and prep for busy families.</p></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!--== Menu (pricing) ==-->
-        <section id="pricing" class="pricing">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center">
-                        <h2 class="pricing-title">Menu</h2>
-                    </div>
-                </div>
-                <div class="row" style="margin-top:30px;">
-                    <div class="col-md-10 col-md-offset-1">
-                        <ul id="menu-pricing" class="menu-price">
-                            <li class="item dinner">
-                                <a href="#">
-                                    <img src="jollof-rice.jpg.jpg" class="img-responsive" alt="Jollof Rice with Chicken">
-                                    <div class="menu-desc text-center"><span><h3>Jollof Rice with Chicken</h3></span></div>
-                                </a>
-                                <h2 class="white">From ₦6,500</h2>
-                            </li>
-                            <li class="item dinner">
-                                <a href="#">
-                                    <img src="grilled-fish.jpg.jpg" class="img-responsive" alt="Grilled Fish with Fried Rice">
-                                    <div class="menu-desc text-center"><span><h3>Grilled Fish with Fried Rice</h3></span></div>
-                                </a>
-                                <h2 class="white">From ₦8,000</h2>
-                            </li>
-                            <li class="item dinner">
-                                <a href="#">
-                                    <img src="pepper-soup.jpg.jpg" class="img-responsive" alt="Pepper Soup">
-                                    <div class="menu-desc text-center"><span><h3>Pepper Soup</h3></span></div>
-                                </a>
-                                <h2 class="white">From ₦4,000</h2>
-                            </li>
-                            <li class="item dinner">
-                                <a href="#">
-                                    <img src="chicken-wings.jpg.jpg" class="img-responsive" alt="Chicken Wings">
-                                    <div class="menu-desc text-center"><span><h3>Chicken Wings</h3></span></div>
-                                </a>
-                                <h2 class="white">From ₦5,000</h2>
-                            </li>
-                            <li class="item dinner">
-                                <a href="#">
-                                    <img src="egusi-soup.jpg.jpg" class="img-responsive" alt="Pounded Yam & Egusi Soup">
-                                    <div class="menu-desc text-center"><span><h3>Pounded Yam & Egusi Soup</h3></span></div>
-                                </a>
-                                <h2 class="white">From ₦7,000</h2>
-                            </li>
-                            <li class="item dinner">
-                                <a href="#">
-                                    <img src="spaghetti.jpg.jpg" class="img-responsive" alt="Spaghetti Bolognese">
-                                    <div class="menu-desc text-center"><span><h3>Spaghetti Bolognese</h3></span></div>
-                                </a>
-                                <h2 class="white">From ₦6,000</h2>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!--== Gallery ==-->
-        <section id="have-a-look" class="have-a-look">
-            <div class="wrapper">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <h2 class="section-title">Photo Gallery</h2>
-                        </div>
-                        <div class="col-md-12" style="margin-top:20px;">
-                            <div class="row gallery">
-                                <div class="col-sm-4"><img src="spaghetti.jpg.jpg" class="img-responsive" alt="gallery"></div>
-                                <div class="col-sm-4"><img src="grilled-fish.jpg.jpg" class="img-responsive" alt="gallery"></div>
-                                <div class="col-sm-4"><img src="pepper-soup.jpg.jpg" class="img-responsive" alt="gallery"></div>
-                                <div class="col-sm-4" style="margin-top:20px;"><img src="chicken-wings.jpg.jpg" class="img-responsive" alt="gallery"></div>
-                                <div class="col-sm-4" style="margin-top:20px;"><img src="egusi-soup.jpg.jpg" class="img-responsive" alt="gallery"></div>
-                                <div class="col-sm-4" style="margin-top:20px;"><img src="jollof-rice.jpg.jpg" class="img-responsive" alt="gallery"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!--== Reserve ==-->
-        <section id="reserve" class="reserve">
-            <div class="wrapper">
-                <div class="container-fluid">
-                    <div class="row dis-table">
-                        <div class="col-xs-6 col-sm-6 dis-table-cell color-bg">
-                            <h2 class="section-title">Reserve / Order</h2>
-                        </div>
-                        <div class="col-xs-6 col-sm-6 dis-table-cell section-bg"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="reservation">
-            <div class="wrapper">
-                <div class="container-fluid">
-                    <div class="section-content">
-                        <div class="row">
-                            <div class="col-md-5 col-sm-6">
-                                <form class="reservation-form" onsubmit="return sendWhatsAppOrder();">
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control reserve-form" name="name" id="res_name" required placeholder="Name">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="tel" class="form-control reserve-form" name="phone" id="res_phone" required placeholder="Phone">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="form-group">
-                                                <input type="date" class="form-control reserve-form" name="date" id="res_date" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="time" class="form-control reserve-form" name="time" id="res_time" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12 col-sm-12">
-                                            <div class="form-group">
-                                                <select class="form-control" id="res_service" name="service">
-                                                    <option>Home Cooking</option>
-                                                    <option>Small Events</option>
-                                                    <option>Meal Prep</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="number" class="form-control" id="res_guests" name="guests" placeholder="Number of guests">
-                                            </div>
-                                            <div class="form-group">
-                                                <textarea name="message" class="form-control" id="res_message" rows="3" placeholder="Message (optional)"></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12 col-sm-12">
-                                            <button type="submit" id="submit" class="btn btn-reservation">
-                                                <span><i class="fa fa-whatsapp"></i></span>
-                                                Send to WhatsApp
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                            <div class="col-md-2 hidden-sm hidden-xs"></div>
-
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="opening-time">
-                                    <h3 class="opening-time-title">Hours</h3>
-                                    <p>Monday to Saturday: 8:00 AM – 8:00 PM</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <script>
-            function sendWhatsAppOrder(){
-                var phone = '+2348105257672';
-                var name = encodeURIComponent(document.getElementById('res_name').value || '');
-                var ph = encodeURIComponent(document.getElementById('res_phone').value || '');
-                var date = encodeURIComponent(document.getElementById('res_date').value || '');
-                var time = encodeURIComponent(document.getElementById('res_time').value || '');
-                var guests = encodeURIComponent(document.getElementById('res_guests').value || '');
-                var service = encodeURIComponent(document.getElementById('res_service').value || '');
-                var message = encodeURIComponent(document.getElementById('res_message').value || '');
-
-                var text = "🍽️ *New Order - Little Chef Maryam*\n👤 Name: " + name + "\n📞 Phone: " + ph + "\n📅 Date: " + date + "\n⏰ Time: " + time + "\n👥 Guests: " + guests + "\n📋 Service: " + service + "\n📝 Message: " + message + "\n*Thank you! Please confirm availability.*";
-
-                var url = 'https://api.whatsapp.com/send?phone=' + phone.replace(/\D/g,'') + '&text=' + encodeURIComponent(text);
-                window.open(url, '_blank');
-                return false;
+            .menu-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
             }
-        </script>
+            .whatsapp-float {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+                bottom: 1rem;
+                right: 1rem;
+            }
+            .whatsapp-float span {
+                display: none;
+            }
+            .whatsapp-float i {
+                font-size: 1.8rem;
+                margin: 0;
+            }
+            .gallery-img {
+                height: 200px;
+            }
+            .hero-phone {
+                font-size: 1rem;
+            }
+            .navbar-custom .navbar-brand {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 
-        <!--== Contact ==-->
-        <section id="contact" class="contact">
-            <div class="container-fluid color-bg">
-                <div class="row dis-table">
-                    <div class="hidden-xs col-sm-6 dis-table-cell">
-                        <h2 class="section-title">Contact</h2>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 dis-table-cell">
-                        <div class="section-content">
-                            <p>C/73 Alhaji Ango Street, Jos North, Plateau State, Nigeria</p>
-                            <p>Phone/WhatsApp: +234 810 525 7672</p>
-                            <p>maryam@littlechef.com</p>
-                        </div>
-                    </div>
+</head>
+<body>
+
+<!-- ====== NAVIGATION ====== -->
+<nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Little <span>Chef</span> Maryam</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="#reserve">Reserve</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ====== WHATSAPP FLOATING BUTTON ====== -->
+<a href="https://wa.me/2348105257672?text=Hello%20Little%20Chef%20Maryam!%20I%20found%20your%20website%20and%20I'd%20like%20to%20place%20an%20order%20or%20make%20a%20reservation."
+   target="_blank"
+   class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+    <span>Order on WhatsApp</span>
+</a>
+
+<!-- ====== HERO ====== -->
+<section class="hero">
+    <div class="container">
+        <div class="age-badge"><i class="fas fa-star"></i> Age 10 <i class="fas fa-star"></i></div>
+        <h1>Little <span>Chef</span> Maryam</h1>
+        <p>Delicious home cooking made with love by a passionate 10-year-old chef.</p>
+        <a href="#reserve" class="btn-hero"><i class="fas fa-utensils"></i> Reserve a Table</a>
+        <div class="hero-phone">
+            <i class="fas fa-phone-alt"></i> <strong>Call / WhatsApp:</strong> +234 810 525 7672
+        </div>
+    </div>
+</section>
+
+<!-- ====== ABOUT ====== -->
+<section id="about" class="about-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="maryam-kitchen.jpg.jpg" alt="Little Chef Maryam" class="about-img">
+                <p style="text-align:center; font-size:0.8rem; color:var(--gray); margin-top:0.3rem;">✨ A young chef with big dreams ✨</p>
+            </div>
+            <div class="col-md-6">
+                <h2 class="section-title" style="text-align:left;">About <span>Maryam</span></h2>
+                <div class="age-highlight" style="margin-bottom:0.5rem;">
+                    <i class="fas fa-star"></i> 10 Years Old <i class="fas fa-star"></i>
                 </div>
-                <div class="social-media">
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
-                            <ul class="center-block">
-                                <li><a href="https://www.tiktok.com/@nusaybahhub" class="tiktok" target="_blank" rel="noopener">TikTok</a></li>
-                                <li><a href="https://www.facebook.com/share/1F4LSsQEnH/" class="facebook" target="_blank" rel="noopener">Facebook</a></li>
-                                <li><a href="#" class="instagram">Instagram</a></li>
-                                <li><a href="#" class="link">Other</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                <p>I'm Maryam, a 10-year-old home chef based in Jos, Nigeria. I discovered my love for cooking at a very young age, and I have been perfecting my recipes ever since. I believe food brings people together and makes every moment special.</p>
+                <p>With the support of my family, I cook delicious meals for my community. From traditional Nigerian dishes to international flavors, I put my heart into every plate.</p>
+                <p style="color:var(--primary); font-weight:600;"><i class="fas fa-check-circle" style="color:var(--accent);"></i> <strong>Contact me:</strong> +234 810 525 7672</p>
+                <a href="https://wa.me/2348105257672" target="_blank" class="btn" style="background:var(--accent); color:var(--primary); font-weight:700; border-radius:50px; padding:0.5rem 2rem; margin-top:0.5rem;">
+                    <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== SERVICES ====== -->
+<section id="services" style="padding:4rem 0; background:var(--light-bg);">
+    <div class="container">
+        <h2 class="section-title">My <span>Services</span></h2>
+        <p class="section-subtitle">What I offer to make your dining experience special</p>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="service-card">
+                    <i class="fas fa-utensils"></i>
+                    <h4>Home Cooking</h4>
+                    <p>Fresh, home-cooked meals made with love and quality ingredients. Perfect for lunch or dinner.</p>
                 </div>
             </div>
-        </section>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <i class="fas fa-users"></i>
+                    <h4>Small Events</h4>
+                    <p>Birthday parties, family gatherings, and small events. I make food that everyone loves.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-card">
+                    <i class="fas fa-box"></i>
+                    <h4>Meal Prep</h4>
+                    <p>Weekly meal prep delivered to your door. Healthy, tasty meals ready when you need them.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        <div class="container-fluid">
-            <div class="row">
-                <div id="map-canvas" style="height:300px;"></div>
+<!-- ====== MENU ====== -->
+<section id="menu" style="padding:4rem 0;">
+    <div class="container">
+        <h2 class="section-title">Sample <span>Menu</span></h2>
+        <p class="section-subtitle">A taste of what I can cook for you. Prices vary by portion and customization.</p>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h4 style="color:var(--primary); font-family:'Playfair Display',serif;">Starters</h4>
+                <div class="menu-item">
+                    <span class="item-name">Spring Rolls</span>
+                    <span class="item-price">From ₦3,500</span>
+                </div>
+                <div class="menu-item">
+                    <span class="item-name">Pepper Soup</span>
+                    <span class="item-price">From ₦4,000</span>
+                </div>
+                <div class="menu-item">
+                    <span class="item-name">Chicken Wings</span>
+                    <span class="item-price">From ₦5,000</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h4 style="color:var(--primary); font-family:'Playfair Display',serif;">Main Courses</h4>
+                <div class="menu-item">
+                    <span class="item-name">Jollof Rice with Chicken</span>
+                    <span class="item-price">From ₦6,500</span>
+                </div>
+                <div class="menu-item">
+                    <span class="item-name">Pounded Yam & Egusi Soup</span>
+                    <span class="item-price">From ₦7,000</span>
+                </div>
+                <div class="menu-item">
+                    <span class="item-name">Grilled Fish with Fried Rice</span>
+                    <span class="item-price">From ₦8,000</span>
+                </div>
+                <div class="menu-item">
+                    <span class="item-name">Spaghetti Bolognese</span>
+                    <span class="item-price">From ₦6,000</span>
+                </div>
             </div>
         </div>
 
-        <section class="contact-form">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
-                        <div class="row">
-                             <form class="contact-form" method="post" action="contact.php">
-                                
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <input  name="name" type="text" class="form-control" id="name" required placeholder="  Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input name="email" type="email" class="form-control" id="email" required placeholder="  Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <input name="subject" type="text" class="form-control" id="subject" required placeholder="  Subject">
-                                    </div>
-                                </div>
+        <div class="text-center mt-4">
+            <p style="color:var(--gray);">Custom menus available for your events. <strong>Call +234 810 525 7672</strong> to discuss.</p>
+            <a href="https://wa.me/2348105257672" target="_blank" class="btn" style="background:var(--primary); color:var(--white); font-weight:700; border-radius:50px; padding:0.6rem 2.5rem;">
+                <i class="fab fa-whatsapp"></i> Order Now
+            </a>
+        </div>
+    </div>
+</section>
 
-                                <div class="col-md-6 col-sm-6">
-                                    <textarea name="message" type="text" class="form-control" id="message" rows="7" required placeholder="  Message"></textarea>
-                                </div>
+<!-- ====== PHOTO GALLERY ====== -->
+<section id="gallery" style="padding:4rem 0; background:var(--light-bg);">
+    <div class="container">
+        <h2 class="section-title">Maryam's <span>Kitchen</span></h2>
+        <p class="section-subtitle">A glimpse into her cooking</p>
+        <div class="row g-4">
+            <div class="col-md-4 col-sm-6">
+                <img src="jollof-rice.jpg.jpg" alt="Jollof Rice with Chicken" class="gallery-img">
+                <div class="gallery-caption">Jollof Rice with Chicken</div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <img src="grilled-fish.jpg" alt="Grilled Fish with Fried Rice" class="gallery-img">
+                <div class="gallery-caption">Grilled Fish with Fried Rice</div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <img src="pepper-soup.jpg" alt="Pepper Soup" class="gallery-img">
+                <div class="gallery-caption">Pepper Soup</div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <img src="chicken-wings.jpg" alt="Chicken Wings" class="gallery-img">
+                <div class="gallery-caption">Chicken Wings</div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <img src="egusi-soup.jpg" alt="Pounded Yam & Egusi Soup" class="gallery-img">
+                <div class="gallery-caption">Pounded Yam & Egusi Soup</div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <img src="spaghetti.jpg.pg.jpg" alt="Spaghetti Bolognese" class="gallery-img">
+                <div class="gallery-caption">Spaghetti Bolognese</div>
+            </div>
+        </div>
+    </div>
+</section>
 
-                                <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
-                                    <div class="text-center">
-                                        <button type="submit" id="submit" name="submit" class="btn btn-send">Send </button>
-                                    </div>
-                                </div>
-                            </form>
+<!-- ====== RESERVATION ====== -->
+<section id="reserve" class="reservation-section">
+    <div class="container">
+        <h2 class="section-title">Make a <span>Reservation</span></h2>
+        <p class="section-subtitle">Book a meal or event. I will confirm within 24 hours.</p>
+
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <form id="reservationForm" onsubmit="sendReservation(event)">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control" id="resName" placeholder="Your Full Name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="tel" class="form-control" id="resPhone" placeholder="Phone Number" required>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
-                        <div class="copyright text-center">
-                            <p>
-                                &copy; Copyright, 2026 Little Chef Maryam. All rights reserved.
-                            </p>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="email" class="form-control" id="resEmail" placeholder="Email (optional)">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="date" class="form-control" id="resDate" required>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="time" class="form-control" id="resTime" placeholder="Time" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <select class="form-control" id="resGuests">
+                                <option value="1">1 Guest</option>
+                                <option value="2" selected>2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                                <option value="5">5 Guests</option>
+                                <option value="6+">6+ Guests</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-control" id="resService">
+                            <option value="Home Cooking">Home Cooking</option>
+                            <option value="Small Event">Small Event</option>
+                            <option value="Meal Prep">Meal Prep</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control" id="resMessage" rows="3" placeholder="Any special request, dietary needs, or additional details..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-reserve">
+                        <i class="fab fa-whatsapp"></i> Send Reservation via WhatsApp
+                    </button>
+                </form>
+                <p class="text-center mt-3" style="font-size:0.9rem; color:var(--gray);">
+                    <i class="fas fa-info-circle"></i> You will be redirected to WhatsApp to confirm your reservation.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <h2 class="section-title">Get in <span>Touch</span></h2>
+        <p class="section-subtitle">I'd love to hear from you. Reach out anytime!</p>
+
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i> <strong>Phone / WhatsApp:</strong> +234 810 525 7672
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i> <strong>Email:</strong> maryam@littlechef.com
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i> <strong>Location:</strong> C/73 Alhaji Ango Street, Jos North, Plateau State, Nigeria
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i> <strong>Hours:</strong> Mon–Sat, 8:00 AM – 8:00 PM
+                    </div>
+                </div>
+
+                <div class="social-icons text-center mt-4">
+                    <a href="https://www.tiktok.com/@nusaybahhub" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.facebook.com/share/1F4LSsQEnH/" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/2348105257672" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
-        </footer>
+        </div>
+    </div>
+</section>
 
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script type="text/javascript" src="js/jquery.mixitup.min.js" ></script>
-        <script src="js/wow.min.js"></script>
-        <script src="js/jquery.validate.js"></script>
-        <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
-        <script type="text/javascript" src="js/jQuery.scrollSpeed.js"></script>
-        <script src="js/script.js"></script>
+<!-- ====== FOOTER ====== -->
+<footer class="footer">
+    <div class="container">
+        <div class="social">
+            <a href="https://www.tiktok.com/@nusaybahhub" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.facebook.com/share/1F4LSsQEnH/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/2348105257672" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p>🌟 <strong>Little Chef Maryam</strong> – Age 10 🌟</p>
+        <p>Home cooking made with love</p>
+        <p style="font-size:1.1rem; font-weight:600;"><i class="fas fa-phone-alt" style="color:var(--accent);"></i> +234 810 525 7672</p>
+        <p style="font-size:0.9rem; opacity:0.7;">📍 C/73 Alhaji Ango Street, Jos North, Plateau State, Nigeria</p>
+        <p style="font-size:0.8rem; opacity:0.5; margin-top:1rem;">&copy; 2025 Little Chef Maryam</p>
+    </div>
+</footer>
 
-    </body>
+<!-- ====== JAVASCRIPT ====== -->
+<script>
+    function sendReservation(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('resName').value;
+        const phone = document.getElementById('resPhone').value;
+        const email = document.getElementById('resEmail').value;
+        const date = document.getElementById('resDate').value;
+        const time = document.getElementById('resTime').value;
+        const guests = document.getElementById('resGuests').value;
+        const service = document.getElementById('resService').value;
+        const message = document.getElementById('resMessage').value;
+
+        let whatsappMsg = '🍽️ *New Reservation - Little Chef Maryam*%0A';
+        whatsappMsg += `👤 *Name:* ${name}%0A`;
+        whatsappMsg += `📞 *Phone:* ${phone}%0A`;
+        if (email) whatsappMsg += `📧 *Email:* ${email}%0A`;
+        whatsappMsg += `📅 *Date:* ${date}%0A`;
+        whatsappMsg += `⏰ *Time:* ${time}%0A`;
+        whatsappMsg += `👥 *Guests:* ${guests}%0A`;
+        whatsappMsg += `📋 *Service:* ${service}%0A`;
+        if (message) whatsappMsg += `📝 *Message:* ${message}%0A`;
+        whatsappMsg += `%0A*Thank you! Please confirm availability.*`;
+
+        const url = `https://wa.me/2348105257672?text=${whatsappMsg}`;
+        window.open(url, '_blank');
+    }
+
+    // Set default date to tomorrow
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateInput = document.getElementById('resDate');
+        if (dateInput) {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            dateInput.value = tomorrow.toISOString().split('T')[0];
+        }
+    });
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
 </html>
